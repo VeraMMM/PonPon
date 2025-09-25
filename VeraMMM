@@ -1,0 +1,128 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <limits>
+using namespace std; 
+
+bool isInt(int x) {
+
+    if (cin.fail() ) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        return false;
+    }
+
+    if (cin.peek() != '\n' ) {
+        cin.ignore(1000, '\n');
+        return false;
+    }
+
+    return true;
+}
+bool isDouble(double x) {
+
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return false;
+    }
+
+    if (cin.peek() != '\n') {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return false;
+    }
+
+    return true;
+}
+
+class Bank
+{
+public:
+
+string BankName;
+int contributionCount;
+double contributionSize;
+double interestRate;
+
+Bank(string p_BankName, int p_CC, double CS, double IR) : BankName(p_BankName),contributionCount(p_CC),contributionSize(CS),interestRate(IR) {}
+
+
+double calculate_1() const
+{
+    return ((contributionCount*contributionSize*interestRate) / 100 ); 
+}
+
+};
+
+
+Bank* input_creat(){
+    string name1;
+    int coutn1;
+    double size1;
+    double rate1;
+
+    cout << "Пожалуйста, введите название банка: ";
+    cin >> name1;
+
+
+    while(true){
+        cout << "Введите количество вкладов:";
+        cin >> coutn1;
+        if (isInt(coutn1) && coutn1 > 0 ) {
+        break;
+    }
+    else{
+        cout << "Try again"<< endl;
+        continue;
+    }
+
+    }
+    while(true){
+        cout << "Введите размер вкладов:";
+        cin >> size1;
+        if (isDouble(size1) && size1 > 0) {
+        break;
+    }
+    else{
+        cout << "Try again"<< endl;
+    }
+
+    }
+    while(true){
+        cout << "Введите размерную ставку:";
+        cin >> rate1;
+        if (isDouble(rate1) && rate1 > 0 && rate1 <= 100) {
+        break;
+    }
+    else{
+        cout << "Try again"<< endl;
+    }
+
+    }
+    
+
+    return new Bank(name1,coutn1,size1,rate1);
+    
+}
+
+
+
+
+
+
+
+
+int main()
+{
+    setlocale(LC_ALL,"RU"); 
+
+    Bank* myBank = input_creat();
+    if(myBank){
+        double total = myBank -> calculate_1();
+        cout << "Общая выплата: " << total << endl;
+        delete myBank;
+    }
+    
+    return 0;
+
+}
