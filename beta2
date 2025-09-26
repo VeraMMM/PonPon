@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+using namespace std; 
+
+
+
+
+
+
+
+class Bank
+{
+public:
+
+};
+
+
+
+
+
+
+
+
+class Person
+{
+public:
+string nameP;
+int age;
+int id_person; // проверка на уникальность
+
+};
+
+class Contribution
+{
+public:
+
+double size;
+double rate_p;//проверка что не больше 100
+double rate;
+
+Contribution(double size_b, double rate_p_b, double rate_p ) :size(size_b), rate_p(rate_p_b), rate(rate_p) {}
+
+double calculate_precent() const
+{
+    return (size*rate_p)/100;
+
+}
+
+
+};
+
+class Info
+{
+public:
+
+};
+
+
+
+
+
+
+
+
+
+int main()
+{
+    setlocale(LC_ALL, "RU");
+
+}
